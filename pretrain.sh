@@ -1,0 +1,1 @@
+python pretrain.py exp.name=mae-mscoco-pretrain-0.85 dataset=mscoco algorithm=mae

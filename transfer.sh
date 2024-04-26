@@ -1,0 +1,1 @@
+python3 transfer.py exp.name=nmae-imagenet-transfer-cu-birds-0.85

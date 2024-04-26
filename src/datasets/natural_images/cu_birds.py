@@ -24,7 +24,8 @@ class CUBirds(Dataset):
 
     def __init__(self, base_root: str, download: bool = False, train: bool = True) -> None:
         super().__init__()
-        self.root = os.path.join(base_root, 'natural_images', 'cu_birds')
+        # self.root = os.path.join(base_root, 'natural_images', 'cu_birds')
+        self.root = "/home/jm2787/dabs-nmae/dataset/natural_images/"
         self.download = download
         self.train = train
         self.transforms = transforms.Compose(

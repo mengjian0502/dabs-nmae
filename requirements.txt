@@ -1,15 +1,13 @@
 flax==0.4.1
-jax==0.3.13
+jax==0.4.6
 isort==5.9.3
 jinja2>=2.11
 numpy==1.20.1  # sweet spot between tensorflow and torch packages
-pycocotools==2.0.4
 pylint==2.11.0
 scipy
 toml==0.10.2
 tqdm==4.64.0
 wget==3.2
-hydra
 optax==0.1.2
 tifffile
 pandas
@@ -22,7 +20,6 @@ torchvision
 torchaudio 
 numba
 Pillow
-hydra-core
 pytorch-lightning
 librosa
 datasets

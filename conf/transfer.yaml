@@ -1,14 +1,14 @@
 # @package _group_
-ckpt: null
-data_root: ./DATASETS
+ckpt: '/home/jm2787/dabs-nmae/nmae-imagenet224-pretrain-lambda5e-5/epoch=4-step=100000.ckpt'
+data_root: ./dataset
 gpus: 0
 finetune: False
 
 framework: pytorch
 
 exp:
-  base_dir: ./EXPS
-  name: ???
+  base_dir: /home/jm2787/dabs-nmae/
+  name: nmae-imagenet-transfer-cu-birds-0.85
 
 trainer:
   weights_summary: top
@@ -26,7 +26,7 @@ optim:
   momentum: 0.9  # only used for momentum-based optimizers
 
 defaults:
-  - dataset: librispeech_transfer
+  - dataset: cu_birds
   - model: transformer  # used to set default model when no ckpt is passed in
 
 # Disable hydra creation of directories

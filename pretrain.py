@@ -7,13 +7,18 @@ import hydra
 
 from src.datasets.catalog import PRETRAINING_DATASETS, UNLABELED_DATASETS
 
+import PIL
+from PIL import Image
+PIL.ImageFile.LOAD_TRUNCATED_IMAGES = True
+Image.MAX_IMAGE_PIXELS = 1000000000
+
 
 def run_pytorch(config):
     '''Runs pretraining in PyTorch.'''
     import pytorch_lightning as pl
 
     from src.evaluators.pytorch import online_evaluator
-    from src.systems.pytorch import contpred, emix, mae, shed
+    from src.systems.pytorch import contpred, emix, mae, shed, nmae
 
     # Check for dataset.
     assert config.dataset.name in PRETRAINING_DATASETS, f'{config.dataset.name} not one of {PRETRAINING_DATASETS}.'
@@ -26,6 +31,7 @@ def run_pytorch(config):
     pl.seed_everything(config.trainer.seed)
     wandb_logger = pl.loggers.WandbLogger(project='domain-agnostic', name=config.exp.name)
     wandb_logger.log_hyperparams(flat_config)
+
     callbacks = [
         pl.callbacks.ModelCheckpoint(dirpath=save_dir, every_n_train_steps=config.trainer.ckpt_every_n_steps, save_top_k=-1)
     ]
@@ -39,6 +45,8 @@ def run_pytorch(config):
         system = contpred.ContpredSystem(config, negatives='sequence')
     elif config.algorithm == 'mae':
         system = mae.MAESystem(config)
+    elif config.algorithm == 'nmae':
+        system = nmae.NMAESystem(config)
     else:
         raise ValueError(f'Unimplemented algorithm config.algorithm={config.algorithm}.')
 

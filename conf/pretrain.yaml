@@ -1,14 +1,14 @@
-algorithm: emix
-data_root: ./DATASETS
+algorithm: mae
+data_root: /share/seo/mscoco/
 gpus: 0
 budget: 0.05
-corruption_rate: 0.15
+corruption_rate: 0.85
 
 framework: pytorch
 
 exp:
-  base_dir: ./EXPS
-  name: ???
+  base_dir: /home/jm2787/dabs-nmae/
+  name: mae-mscoco-sparsity0.85
 
 trainer:
   weights_summary: top
@@ -35,7 +35,7 @@ contpred:
 
 defaults:
   - model: transformer
-  - dataset: wikitext103
+  - dataset: mscoco
 
 # Disable hydra creation of directories
 hydra:
